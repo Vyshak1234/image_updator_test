@@ -1,0 +1,30 @@
+apiVersion: argocd-image-updater.argoproj.io/v1alpha1
+kind: ImageUpdater
+metadata:
+  name: nginx-demo-updater
+  namespace: argocd
+
+spec:
+  commonUpdateSettings:
+    updateStrategy: newest-build
+
+  writeBackConfig:
+    method: git
+    gitConfig:
+      branch: master
+      writeBackTarget: helmvalues:./charts/values.yaml
+
+  applicationRefs:
+    - namePattern: nginx-demo
+
+      images:
+        - alias: nginx
+          imageName: acrsandbox002acceleratorapp.azurecr.io/nginx
+
+          commonUpdateSettings:
+            allowTags: "regexp:^v[0-9]+$"
+
+          manifestTargets:
+            helm:
+              name: image.repository
+              tag: image.tag
