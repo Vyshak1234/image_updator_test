@@ -12,7 +12,7 @@ spec:
     method: git
     gitConfig:
       branch: master
-      writeBackTarget: helmvalues:./charts/values.yaml
+      writeBackTarget: helmvalues:./values.yaml
 
   applicationRefs:
     - namePattern: nginx-demo
