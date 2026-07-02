@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: acrsandbox002acceleratorapp.azurecr.io/nginx
-  tag: v5
+  tag: v6
   pullPolicy: IfNotPresent
 service:
   type: ClusterIP
